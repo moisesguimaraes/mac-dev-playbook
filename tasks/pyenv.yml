@@ -1,0 +1,26 @@
+---
+- name: Ensure workon directory exists.
+  file:
+    path: ~/.ve
+    state: directory
+
+- name: Ensure workspace directory exists.
+  file:
+    path: ~/workspaces/python
+    state: directory
+
+- name: List installed python versions.
+  command: pyenv versions
+  register: installed_pyenvs
+  check_mode: no
+  changed_when: false
+
+- name: Ensure configured python versions are installed.
+  command: pyenv install {{ item }}
+  with_items: "{{ pyenv_versions }}"
+  when: item not in installed_pyenvs.stdout
+
+- name: Ensure configured virtualenvs are created.
+  command: pyenv virtualenv {{ item.version }} {{ item.name }}
+  with_items: "{{ pyenv_virtualenvs }}"
+  when: item.name not in installed_pyenvs.stdout

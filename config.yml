@@ -99,3 +99,28 @@ pip_packages: []
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
   - tasks/ohmyzsh.yml
+  - tasks/pyenv.yml
+
+pyenv_versions:
+  - 3.7.0
+  - 2.7.15
+
+pyenv_virtualenvs:
+  - name: jupyter3
+    version: 3.7.0
+    packages:
+      - jupyter
+    post: "python -m ipykernel install --user"
+  - name: tools3
+    version: 3.7.0
+    packages: []
+    post: ""
+  - name: ipython2
+    version: 2.7.15
+    packages:
+      - ipykernel
+    post: "python -m ipykernel install --user"
+  - name: tools2
+    version: 2.7.15
+    packages: []
+    post: ""
