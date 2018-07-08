@@ -1,0 +1,36 @@
+---
+# Oh My ZSH
+- name: Oh My ZSH | Is present?
+  stat:
+    path: ~/.oh-my-zsh
+  register: oh_my_zsh_home
+
+- name: Oh My ZSH | Install 
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
+- name: Oh My ZSH | Switch to ZSH
+  shell: chsh -s /bin/zsh {{ ansible_user_id }}
+  become: yes
+  when: not oh_my_zsh_home.stat.exists
+
+# Powerline Fonts
+- name: PowerLine fonts | Is present?
+  stat:
+    path: ~/workspaces/provison/powerline/fonts
+  register: powerline_home
+
+- name: PowerLine fonts | Clone repo
+  git:
+    repo: git://github.com/powerline/fonts.git
+    dest: ~/workspaces/provison/powerline/fonts
+
+- name: PowerLine fonts | Install
+  shell: cd ~/workspaces/provison/powerline/fonts && ./install.sh
+  when: not powerline_home.stat.exists
+
+- name: Oh-My-Zsh | Reset font cache
+  shell: atsutil databases -remove
+  become: yes
+  when: not powerline_home.stat.exists
