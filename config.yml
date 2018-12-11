@@ -2,7 +2,7 @@
 downloads: ~/.ansible-downloads/
 
 configure_ansible: no
-configure_dotfiles: yes
+configure_dotfiles: no
 configure_sudoers: yes
 configure_terminal: no
 configure_osx: no
@@ -37,8 +37,9 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  ## backup
+  ## backup & identity
   - dropbox
+  - keybase
   ## games
   # battle-net
   - openemu
@@ -59,6 +60,7 @@ homebrew_cask_apps:
   - virtualbox
   # vmware-fusion
   ## others
+  - graphviz
   - libreoffice
   - skype
   - supercollider
@@ -86,7 +88,11 @@ composer_packages: []
   # - name: drush
   #   state: present # present/absent, default: present
   #   version: "^8.1" # default: N/A
-gem_packages: []
+gem_packages:
+  - name: bundler
+    state: present
+  - name: jekyll
+    state: present
   # - name: bundler
   #   state: present # present/absent/latest, default: present
   #   version: "~> 1.15.1" # default: N/A
@@ -106,6 +112,7 @@ post_provision_tasks:
 
 pyenv_versions:
   - 3.7.0
+  - 3.5.5
   - 2.7.15
 
 pyenv_virtualenvs:
