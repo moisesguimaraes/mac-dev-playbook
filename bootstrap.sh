@@ -23,3 +23,4 @@ ansible-galaxy install -r requirements.yml
 
 echo -e "\nYour system is ready for provisioning!\n"
 echo -e "Run 'ansible-playbook main.yml -i inventory -K' to do so\n"
+
