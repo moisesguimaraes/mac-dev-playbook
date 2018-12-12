@@ -19,6 +19,8 @@ dotfiles_files:
   - bin
   - .config
   - .gitconfig
+  - .gitconfig.redhat
+  - .gitconfig.wolfssl
   - .gitignore
   #- .inputrc
   #- .osx
