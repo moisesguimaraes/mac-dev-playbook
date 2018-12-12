@@ -1,11 +1,14 @@
 ---
 downloads: ~/.ansible-downloads/
 
-configure_ansible:  no
-configure_dotfiles: yes
-configure_sudoers:  no
-configure_terminal: no
-configure_osx:      no
+configure_homebrew:       yes
+configure_ansible:        yes
+configure_dotfiles:       yes
+configure_extra_packages: yes
+configure_mas:            yes
+configure_sudoers:        no
+configure_terminal:       no
+configure_osx:            no
 
 dotfiles_repo: git@github.com:moisesguimaraes/dotfiles.git
 dotfiles_repo_accept_hostkey: yes
@@ -36,6 +39,7 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - caskroom/fonts
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -59,12 +63,15 @@ homebrew_cask_apps:
   - firefox
   - google-chrome
   ## virtualization
-  - docker
-  - vagrant
-  - virtualbox
+  # docker
+  # vagrant
+  # virtualbox
   # vmware-fusion
+  ## fonts
+  - font-fira-code
   ## others
-  - graphviz
+  # daisydisk
+  # graphviz
   - libreoffice
   - skype
   - supercollider
@@ -142,3 +149,11 @@ pyenv_virtualenvs:
     version: 2.7.15
     packages: []
     post: ""
+
+pyenv_global:
+  - 3.7.1
+  - 2.7.15
+  - jupyter3
+  - ipython2
+  - tools3
+  - tools2

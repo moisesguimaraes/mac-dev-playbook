@@ -30,3 +30,16 @@
   command: pyenv virtualenv {{ item.version }} {{ item.name }}
   with_items: "{{ pyenv_virtualenvs }}"
   when: item.name not in installed_pyenvs.stdout
+
+- name: Ensure pyenv global is set.
+  command: pyenv global {{ pyenv_global | join(' ') }}
+
+- name: Ensures ipython profile dir exists
+  file:
+    path: ~/.ipython/profile_default/startup
+    state: directory
+
+- name: Ensures ipython profile exists
+  template:
+    src: files/ipython/00-venv-sitepackages.py
+    dest: ~/.ipython/profile_default/startup/00-venv-sitepackages.py
