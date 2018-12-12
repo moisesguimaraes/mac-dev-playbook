@@ -16,8 +16,12 @@ dotfiles_repo_local_destination: ~/Dropbox/Workstation/dotfiles
 
 dotfiles_files:
   #- .bash_profile
-  - bin
-  - .config
+  - bin/brew
+  - bin/hack
+  - bin/ship
+  - bin/dwf
+  - Library/Application Support/Code/User/settings.json
+  - .config/kitty/kitty.conf
   - .gitconfig
   - .gitconfig.redhat
   - .gitconfig.wolfssl
@@ -124,6 +128,7 @@ pip_packages: []
 post_provision_tasks:
   - tasks/ohmyzsh.yml
   - tasks/pyenv.yml
+  - tasks/vscode.yml
 
 pyenv_versions:
   - 3.7.1
@@ -161,3 +166,9 @@ pyenv_global:
   - tools3
   - tools2
 
+vscode_extensions:
+  - ms-python.python
+  - pkief.material-icon-theme
+  - vangware.dark-plus-material
+  - editorconfig.editorconfig
+  - dunstontc.viml
