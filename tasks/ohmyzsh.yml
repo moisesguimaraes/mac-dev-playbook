@@ -30,7 +30,12 @@
   shell: cd ~/workspaces/provison/powerline/fonts && ./install.sh
   when: not powerline_home.stat.exists
 
-- name: Oh-My-Zsh | Reset font cache
+- name: Oh My ZSH | Reset font cache
   shell: atsutil databases -remove
   become: yes
   when: not powerline_home.stat.exists
+
+- name: Oh My ZSH | Bullet Train Theme
+  get_url:
+    url: https://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
+    dest: ~/.oh-my-zsh/themes/bullet-train.zsh-theme

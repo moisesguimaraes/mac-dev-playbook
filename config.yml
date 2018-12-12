@@ -1,20 +1,22 @@
 ---
 downloads: ~/.ansible-downloads/
 
-configure_ansible: no
-configure_dotfiles: no
-configure_sudoers: yes
+configure_ansible:  no
+configure_dotfiles: yes
+configure_sudoers:  no
 configure_terminal: no
-configure_osx: no
+configure_osx:      no
 
 dotfiles_repo: git@github.com:moisesguimaraes/dotfiles.git
 dotfiles_repo_accept_hostkey: yes
-dotfiles_repo_local_destination: ~/dotfiles
+dotfiles_repo_local_destination: ~/Dropbox/Workstation/dotfiles
+
 dotfiles_files:
   #- .bash_profile
+  - bin
+  - .config
   - .gitconfig
   - .gitignore
-  - .gitextras
   #- .inputrc
   #- .osx
   - .vimrc
@@ -47,9 +49,11 @@ homebrew_cask_apps:
   ## tools
   - diffmerge
   - focus-booster
+  - kitty
   - iterm2
   - sourcetree
   - textmate
+  - visual-studio-code
   - wireshark
   ## browsers
   - firefox
@@ -76,6 +80,9 @@ mas_installed_apps:
   - { id: 409201541, name: "Pages" }
   - { id: 409203825, name: "Numbers" }
   - { id: 408981434, name: "iMovie" }
+  - { id: 682658836, name: "GarageBand" }
+  - { id: 638161122, name: "YubiKey Personalization Tool" }
+  - { id: 410628904, name: "Wunderlist: To-Do List & Tasks" }  
 mas_email: ""
 mas_password: ""
 
@@ -88,14 +95,13 @@ composer_packages: []
   # - name: drush
   #   state: present # present/absent, default: present
   #   version: "^8.1" # default: N/A
+gem_user_install: yes
 gem_packages:
   - name: bundler
-    state: present
+    state: present # present/absent/latest, default: present
+  # version: "~> 1.15.1" # default: N/A
   - name: jekyll
     state: present
-  # - name: bundler
-  #   state: present # present/absent/latest, default: present
-  #   version: "~> 1.15.1" # default: N/A
 npm_packages: []
   # - name: webpack
   #   state: present # present/absent/latest, default: present
@@ -111,19 +117,21 @@ post_provision_tasks:
   - tasks/pyenv.yml
 
 pyenv_versions:
-  - 3.7.0
-  - 3.5.5
+  - 3.7.1
+  - 3.5.6
   - 2.7.15
 
 pyenv_virtualenvs:
   - name: jupyter3
-    version: 3.7.0
+    version: 3.7.1
     packages:
       - jupyter
     post: "python -m ipykernel install --user"
   - name: tools3
-    version: 3.7.0
-    packages: []
+    version: 3.7.1
+    packages:
+      - flake8
+      - tox
     post: ""
   - name: ipython2
     version: 2.7.15

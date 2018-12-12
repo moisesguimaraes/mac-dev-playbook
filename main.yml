@@ -23,6 +23,7 @@
 
   tasks:
     - include_tasks: tasks/ansible-setup.yml
+      when: configure_ansible
 
     - include_tasks: tasks/sudoers.yml
       when: configure_sudoers

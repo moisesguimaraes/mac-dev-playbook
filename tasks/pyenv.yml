@@ -6,7 +6,7 @@
 
 - name: Ensure workspace directory exists.
   file:
-    path: ~/workspaces/python
+    path: ~/workspaces
     state: directory
 
 - name: List installed python versions.
@@ -15,8 +15,14 @@
   check_mode: no
   changed_when: false
 
+- name: Setting variable for CFLAGS.
+  command: "xcrun --show-sdk-path"
+  register: osx_sdk_dir
+
 - name: Ensure configured python versions are installed.
   command: pyenv install {{ item }}
+  environment:
+    CFLAGS: -I{{osx_sdk_dir.stdout}}/usr/include
   with_items: "{{ pyenv_versions }}"
   when: item not in installed_pyenvs.stdout
 
