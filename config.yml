@@ -136,26 +136,23 @@ pyenv_versions:
   - 2.7.15
 
 pyenv_virtualenvs:
-  - name: jupyter3
-    version: 3.7.1
-    packages:
-      - jupyter
-    post: "python -m ipykernel install --user"
-  - name: tools3
-    version: 3.7.1
-    packages:
-      - flake8
-      - tox
-    post: ""
-  - name: ipython2
-    version: 2.7.15
-    packages:
-      - ipykernel
-    post: "python -m ipykernel install --user"
-  - name: tools2
-    version: 2.7.15
-    packages: []
-    post: ""
+  - { name: jupyter3, version: 3.7.1  }
+  - { name: tools3,   version: 3.7.1  }
+  - { name: ipython2, version: 2.7.15 }
+  - { name: tools2,   version: 2.7.15 }
+
+pyenv_virtualenv_packages:
+  - { env: tools2, name: six }
+#  - name: jupyter
+#    env: jupyter3
+#    post: "python -m ipykernel install --user"
+#  - name: flake8
+#    env: tools3
+#  - name: tox
+#    env: tools3
+#  - name: ipykernel
+#    env: ipython2
+#    post: "python -m ipykernel install --user"
 
 pyenv_global:
   - 3.7.1
@@ -168,7 +165,7 @@ pyenv_global:
 
 vscode_extensions:
   - ms-python.python
-  - pkief.material-icon-theme
+  - PKief.material-icon-theme
   - vangware.dark-plus-material
-  - editorconfig.editorconfig
+  - EditorConfig.EditorConfig
   - dunstontc.viml
