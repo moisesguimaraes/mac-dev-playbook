@@ -69,6 +69,7 @@ homebrew_cask_apps:
   ## browsers
   - firefox
   - google-chrome
+  - flash-npapi
   ## virtualization
   # docker
   # vagrant
