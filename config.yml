@@ -98,6 +98,7 @@ mas_installed_apps:
   - { id: 682658836,  name: "GarageBand" }
   - { id: 411643860,  name: "DaisyDisk" }
   - { id: 638161122,  name: "YubiKey Personalization Tool" }
+  - { id: 1116599239, name: "NordVPN IKE" }
   - { id: 410628904,  name: "Wunderlist: To-Do List & Tasks" }
 mas_email: ""
 mas_password: ""
