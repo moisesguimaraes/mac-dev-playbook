@@ -15,26 +15,6 @@
   become: yes
   when: not oh_my_zsh_home.stat.exists
 
-# Powerline Fonts
-- name: PowerLine fonts | Is present?
-  stat:
-    path: ~/workspaces/provison/powerline/fonts
-  register: powerline_home
-
-- name: PowerLine fonts | Clone repo
-  git:
-    repo: git://github.com/powerline/fonts.git
-    dest: ~/workspaces/provison/powerline/fonts
-
-- name: PowerLine fonts | Install
-  shell: cd ~/workspaces/provison/powerline/fonts && ./install.sh
-  when: not powerline_home.stat.exists
-
-- name: Oh My ZSH | Reset font cache
-  shell: atsutil databases -remove
-  become: yes
-  when: not powerline_home.stat.exists
-
 - name: Oh My ZSH | Bullet Train Theme
   get_url:
     url: https://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme

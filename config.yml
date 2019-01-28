@@ -59,7 +59,6 @@ homebrew_cask_apps:
   - steam
   ## tools
   - diffmerge
-  - focus-booster
   - kitty
   - iterm2
   - sourcetree
@@ -78,7 +77,9 @@ homebrew_cask_apps:
   ## fonts
   - font-fira-code
   ## others
+  - focus-booster
   # graphviz
+  - imagealpha
   - libreoffice
   - skype
   - supercollider
@@ -115,10 +116,10 @@ composer_packages: []
 gem_user_install: yes
 gem_packages:
   - name: bundler
-    state: present # present/absent/latest, default: present
+    state: latest # present/absent/latest, default: present
   # version: "~> 1.15.1" # default: N/A
   - name: jekyll
-    state: present
+    state: latest
 npm_packages: []
   # - name: webpack
   #   state: present # present/absent/latest, default: present
