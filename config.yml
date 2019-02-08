@@ -33,14 +33,21 @@ dotfiles_files:
   - .zsh_theme_config
 
 homebrew_installed_packages:
+  ## c
   - autoconf
   - automake
-  - git-review
   - libtool
+  ## python
   - pyenv
   - pyenv-virtualenv
   - pyenv-virtualenvwrapper
+  ## git
+  - git-review
+  ## chat
   - weechat
+  ## images
+  - exiftool
+  ## terminal
   - zsh
 
 homebrew_taps:
@@ -57,10 +64,11 @@ homebrew_cask_apps:
   # battle-net
   - openemu
   - steam
+  ## terminal
+  - iterm2
+  - kitty
   ## tools
   - diffmerge
-  - kitty
-  - iterm2
   - sourcetree
   - textmate
   - visual-studio-code
@@ -70,20 +78,20 @@ homebrew_cask_apps:
   - google-chrome
   - flash-npapi
   ## virtualization
-  # docker
+  - docker
   # vagrant
-  # virtualbox
+  - virtualbox
   # vmware-fusion
   ## fonts
   - font-fira-code
-  ## others
+  ## productivity
   - focus-booster
   # graphviz
   - imagealpha
   - libreoffice
   - skype
   - supercollider
-  ## redhat
+  ## network
   - tunnelblick
 
 # See `geerlingguy.mas` role documentation for usage instructions.
