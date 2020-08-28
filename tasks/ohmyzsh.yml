@@ -5,7 +5,7 @@
     path: ~/.oh-my-zsh
   register: oh_my_zsh_home
 
-- name: Oh My ZSH | Install 
+- name: Oh My ZSH | Install
   git:
     repo: git://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
