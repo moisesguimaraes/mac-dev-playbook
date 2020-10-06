@@ -10,11 +10,6 @@
     repo: git://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
 
-- name: Oh My ZSH | Switch to ZSH
-  shell: chsh -s /bin/zsh {{ ansible_user_id }}
-  become: yes
-  when: not oh_my_zsh_home.stat.exists
-
 - name: Oh My ZSH | Bullet Train Theme
   get_url:
     url: https://raw.github.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme
