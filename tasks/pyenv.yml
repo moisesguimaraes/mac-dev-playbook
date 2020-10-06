@@ -1,45 +1,51 @@
 ---
-- name: Ensure workon directory exists.
+- name: pyenv | Ensure workon directory exists.
   file:
     path: ~/.ve
     state: directory
 
-- name: Ensure workspace directory exists.
+- name: pyenv | Ensure workspace directory exists.
   file:
     path: ~/workspaces
     state: directory
 
-- name: List installed python versions.
+- name: pyenv | List installed python versions.
   command: pyenv versions
   register: installed_pyenvs
-  check_mode: no
   changed_when: false
 
-- name: Setting variable for CFLAGS.
+- name: pyenv | Check pyenv global
+  command: pyenv global
+  register: current_pyenv_global
+  changed_when: false
+
+- name: pyenv | Setting variable for CFLAGS.
   command: "xcrun --show-sdk-path"
   register: osx_sdk_dir
+  changed_when: false
 
-- name: Ensure configured python versions are installed.
+- name: pyenv | Ensure configured python versions are installed.
   command: pyenv install {{ item }}
-  environment:
-    CFLAGS: -I{{osx_sdk_dir.stdout}}/usr/include
+  # environment:
+  #   CFLAGS: "-I{{osx_sdk_dir.stdout}}/usr/include"
   with_items: "{{ pyenv_versions }}"
   when: item not in installed_pyenvs.stdout
 
-- name: Ensure configured virtualenvs are created.
+- name: pyenv | Ensure configured virtualenvs are created.
   command: pyenv virtualenv {{ item.version }} {{ item.name }}
   with_items: "{{ pyenv_virtualenvs }}"
   when: item.name not in installed_pyenvs.stdout
 
-- name: Ensure pyenv global is set.
+- name: pyenv | Ensure pyenv global is set.
   command: pyenv global {{ pyenv_global | join(' ') }}
+  when: pyenv_global != current_pyenv_global.stdout_lines
 
-- name: Ensures ipython profile dir exists
+- name: pyenv | Ensures ipython profile dir exists
   file:
     path: ~/.ipython/profile_default/startup
     state: directory
 
-- name: Ensures ipython profile exists
+- name: pyenv | Ensures ipython profile exists
   template:
     src: files/ipython/00-venv-sitepackages.py
     dest: ~/.ipython/profile_default/startup/00-venv-sitepackages.py
