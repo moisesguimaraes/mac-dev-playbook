@@ -1,6 +1,10 @@
 ---
 downloads: ~/.ansible-downloads/
 
+#
+# global togglers
+#
+
 configure_homebrew:       yes
 configure_ansible:        yes
 configure_dotfiles:       yes
@@ -10,13 +14,16 @@ configure_sudoers:        no
 configure_terminal:       no
 configure_osx:            no
 
+#
+# dotfiles
+#
+
 dotfiles_repo: git@github.com:moisesguimaraes/dotfiles.git
 dotfiles_repo_accept_hostkey: yes
 dotfiles_repo_local_destination: ~/dotfiles
 
 dotfiles_files:
-  #- .bash_profile
-  - bin/brew
+  # bin/brew
   - bin/hack
   - bin/ship
   - bin/dwf
@@ -26,11 +33,21 @@ dotfiles_files:
   - .gitconfig.redhat
   - .gitconfig.wolfssl
   - .gitignore
-  #- .inputrc
-  #- .osx
+  # .osx
   - .vimrc
   - .zshrc
   - .zsh_theme_config
+
+#
+# homebrew
+#
+
+homebrew_taps:
+  - homebrew/bundle
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - heroku/brew
 
 homebrew_installed_packages:
   ## c
@@ -38,22 +55,25 @@ homebrew_installed_packages:
   - automake
   - libtool
   ## python
+  - black
+  - flake8
   - pyenv
   - pyenv-virtualenv
   - pyenv-virtualenvwrapper
+  - tox
   ## git
   - git-review
+  - pre-commit
   ## chat
   - weechat
   ## images
   - exiftool
-  ## terminal
-  - zsh
-
-homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - caskroom/fonts
+  ## videos
+  - ffmpeg
+  ## security
+  - gnupg
+  ## tools
+  - tmate
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -62,14 +82,13 @@ homebrew_cask_apps:
   - keybase
   ## games
   # battle-net
+  - cockatrice
   - openemu
   - steam
   ## terminal
-  - iterm2
   - kitty
   ## tools
   - diffmerge
-  - sourcetree
   - textmate
   - visual-studio-code
   - wireshark
@@ -79,27 +98,37 @@ homebrew_cask_apps:
   - flash-npapi
   ## virtualization
   - docker
-  # vagrant
+  - vagrant
+  - vagrant-manager
   - virtualbox
-  # vmware-fusion
   ## fonts
   - font-fira-code
+  - font-overpass
   ## productivity
-  - focus-booster
+  # focus-booster
   # graphviz
   - imagealpha
   - libreoffice
-  - skype
+  - openscad
+  ## music
+  - spotify
   - supercollider
+  ## social
+  - discord
+  - skype
   ## network
   - tunnelblick
 
-# See `geerlingguy.mas` role documentation for usage instructions.
+#
+# mas
+#
+
 mas_installed_apps:
   - { id: 443987910,  name: "1Password" }
+  - { id: 1333542190, name: "1Password 7" }
+  - { id: 1432731683, name: "Adblock Plus" }
+  - { id: 1480070821, name: "Cyph" }
   - { id: 803453959,  name: "Slack" }
-  - { id: 747648890,  name: "Telegram" }
-  - { id: 1147396723, name: "WhatsApp Desktop" }
   - { id: 409183694,  name: "Keynote" }
   - { id: 409201541,  name: "Pages" }
   - { id: 409203825,  name: "Numbers" }
@@ -108,34 +137,34 @@ mas_installed_apps:
   - { id: 411643860,  name: "DaisyDisk" }
   - { id: 638161122,  name: "YubiKey Personalization Tool" }
   - { id: 1116599239, name: "NordVPN IKE" }
-  - { id: 410628904,  name: "Wunderlist: To-Do List & Tasks" }
-mas_email: ""
-mas_password: ""
+
+#
+# osx
+#
 
 osx_script: "~/.osx --no-restart"
 
-# Install packages from other package managers.
-# Note: You are responsible for making sure the required package managers are
-# installed, eg. through homebrew.
+#
+# extra packages
+#
+
 composer_packages: []
-  # - name: drush
-  #   state: present # present/absent, default: present
-  #   version: "^8.1" # default: N/A
+
 gem_user_install: yes
+
 gem_packages:
   - name: bundler
-    state: latest # present/absent/latest, default: present
-  # version: "~> 1.15.1" # default: N/A
+    state: latest
   - name: jekyll
     state: latest
+
 npm_packages: []
-  # - name: webpack
-  #   state: present # present/absent/latest, default: present
-  #   version: "^2.6" # default: N/A
+
 pip_packages: []
-  # - name: mkdocs
-  #   state: present # present/absent/latest, default: present
-  #   version: "0.16.3" # default: N/A
+
+#
+# extra tasks
+#
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks:
@@ -143,19 +172,35 @@ post_provision_tasks:
   - tasks/pyenv.yml
   - tasks/vscode.yml
 
+#
+# pyenv
+#
+
 pyenv_versions:
-  - 3.7.1
-  - 3.5.6
-  - 2.7.15
+  - 3.8.5
+  - 2.7.18
 
 pyenv_virtualenvs:
-  - { name: jupyter3, version: 3.7.1  }
-  - { name: tools3,   version: 3.7.1  }
-  - { name: ipython2, version: 2.7.15 }
-  - { name: tools2,   version: 2.7.15 }
+  - name: jupyter3
+    version: 3.8.5
+  - name: tools3
+    version: 3.8.5
+  - name: ipython2
+    version: 2.7.18
+  - name: tools2
+    version: 2.7.18
+
+pyenv_global:
+  - 3.8.5
+  - 2.7.18
+  - jupyter3
+  - ipython2
+  - tools3
+  - tools2
 
 pyenv_virtualenv_packages:
-  - { env: tools2, name: six }
+  - env: tools2
+    name: six
 #  - name: jupyter
 #    env: jupyter3
 #    post: "python -m ipykernel install --user"
@@ -167,14 +212,9 @@ pyenv_virtualenv_packages:
 #    env: ipython2
 #    post: "python -m ipykernel install --user"
 
-pyenv_global:
-  - 3.7.1
-  - 3.5.6
-  - 2.7.15
-  - jupyter3
-  - ipython2
-  - tools3
-  - tools2
+#
+# vscode
+#
 
 vscode_extensions:
   - ms-python.python
