@@ -7,17 +7,10 @@ if [[ ! -x $(which ansible) ]]; then
 
     # Mac OSX
     if [[ $(uname -s) = Darwin ]]; then
-
-        # Download and install Command Line Tools
-        if [[ ! -x $(which gcc) ]]; then
-            echo "[INFO] Installing xcode"
-            xcode-select --install
-        fi
-
         # Download and install Homebrew
         if [[ ! -x $(which brew) ]]; then
             echo "[INFO] Installing homebrew"
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
         fi
 
         # Download and install Ansible
