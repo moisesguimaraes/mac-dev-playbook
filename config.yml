@@ -83,6 +83,7 @@ homebrew_cask_apps:
   ## games
   # battle-net
   - cockatrice
+  - epic-games
   - openemu
   - steam
   ## terminal
@@ -154,8 +155,6 @@ gem_user_install: yes
 
 gem_packages:
   - name: bundler
-    state: latest
-  - name: jekyll
     state: latest
 
 npm_packages: []
