@@ -28,6 +28,7 @@ dotfiles_files:
   - bin/ship
   - bin/dwf
   - Library/Application Support/Code/User/settings.json
+  - Library/KeyBindings/DefaultKeyBinding.dict
   - .config/kitty/kitty.conf
   - .gitconfig
   - .gitconfig.redhat
@@ -60,6 +61,7 @@ homebrew_installed_packages:
   - pyenv
   - pyenv-virtualenv
   - pyenv-virtualenvwrapper
+  - tcl-tk
   - tox
   ## git
   - git-review
@@ -68,12 +70,16 @@ homebrew_installed_packages:
   - weechat
   ## images
   - exiftool
+  - imagemagick
   ## videos
   - ffmpeg
   ## security
   - gnupg
   ## tools
   - tmate
+  ## deployment
+  - awscli
+  - heroku
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -112,8 +118,11 @@ homebrew_cask_apps:
   - libreoffice
   - openscad
   ## music
+  - blackhole
   - spotify
   - supercollider
+  ## video
+  - obs
   ## social
   - discord
   - skype
