@@ -11,18 +11,11 @@
     sed_path: "{{ sed_which_result.stdout }}"
   when: sed_path is undefined
 
-# Sudoers configuration
-- name: Enables more convenient Vagrant usage on sudoers
-  blockinfile:
-    path: /etc/sudoers
-    marker: "# {mark} VAGRANT SUDOERS CONFIG"
-    block: |
-      # Vagrant sudoers config
-      Cmnd_Alias VAGRANT_EXPORTS_ADD = /usr/bin/tee -a /etc/exports
-      Cmnd_Alias VAGRANT_NFSD = /sbin/nfsd restart
-      Cmnd_Alias VAGRANT_EXPORTS_REMOVE = {{ sed_path }} -E -e /*/ d -ibak /etc/exports
-      Cmnd_Alias VAGRANT_HOSTS_ADD = /bin/sh -c echo "*" >> /etc/hosts
-      Cmnd_Alias VAGRANT_HOSTS_REMOVE = {{ sed_path }} -i -e /*/ d /etc/hosts
-      %admin ALL=(root) NOPASSWD: VAGRANT_EXPORTS_ADD, VAGRANT_NFSD, VAGRANT_EXPORTS_REMOVE, VAGRANT_HOSTS_ADD, VAGRANT_HOSTS_REMOVE
+# Sudoers configuration.
+- name: Copy sudoers configuration into place.
+  copy:
+    content: "{{ sudoers_custom_config }}"
+    dest: /private/etc/sudoers.d/custom
+    mode: 0440
     validate: 'visudo -cf %s'
-  become: yes
+  become: true
