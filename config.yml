@@ -102,7 +102,6 @@ homebrew_cask_apps:
   ## browsers
   - firefox
   - google-chrome
-  - flash-npapi
   ## virtualization
   - docker
   - vagrant
@@ -185,6 +184,7 @@ post_provision_tasks:
 #
 
 pyenv_versions:
+  - 3.9.0
   - 3.8.6
   - 3.7.9
   - 3.6.12
@@ -192,15 +192,16 @@ pyenv_versions:
 
 pyenv_virtualenvs:
   - name: jupyter3
-    version: 3.8.6
+    version: 3.9.0
   - name: tools3
-    version: 3.8.6
+    version: 3.9.0
   - name: ipython2
     version: 2.7.18
   - name: tools2
     version: 2.7.18
 
 pyenv_global:
+  - 3.9.0
   - 3.8.6
   - 3.7.9
   - 3.6.12
