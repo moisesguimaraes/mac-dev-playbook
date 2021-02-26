@@ -1,4 +1,5 @@
 ---
-- name: moisesguimaraes.dotfiles
-- name: geerlingguy.homebrew
-- name: geerlingguy.mas
+roles:
+  - name: moisesguimaraes.dotfiles
+  - name: geerlingguy.homebrew
+  - name: geerlingguy.mas
