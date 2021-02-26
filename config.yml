@@ -5,21 +5,27 @@ downloads: ~/.ansible-downloads/
 # global togglers
 #
 
-configure_homebrew:       yes
-configure_ansible:        yes
-configure_dotfiles:       yes
-configure_extra_packages: yes
-configure_mas:            yes
-configure_sudoers:        no
-configure_terminal:       no
-configure_osx:            no
+configure_homebrew:       true
+configure_ansible:        true
+configure_dotfiles:       true
+configure_extra_packages: true
+configure_mas:            true
+configure_sudoers:        false
+configure_terminal:       false
+configure_osx:            false
+
+sudoers_custom_config: ''
+# Example:
+# sudoers_custom_config: |
+#   # Allow users in admin group to use sudo with no password.
+#   %admin ALL=(ALL) NOPASSWD: ALL
 
 #
 # dotfiles
 #
 
 dotfiles_repo: git@github.com:moisesguimaraes/dotfiles.git
-dotfiles_repo_accept_hostkey: yes
+dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/dotfiles
 
 dotfiles_files:
@@ -42,13 +48,6 @@ dotfiles_files:
 #
 # homebrew
 #
-
-homebrew_taps:
-  - homebrew/bundle
-  - homebrew/core
-  - homebrew/cask
-  - homebrew/cask-fonts
-  - heroku/brew
 
 homebrew_installed_packages:
   ## c
@@ -81,6 +80,13 @@ homebrew_installed_packages:
   - awscli
   - heroku
 
+homebrew_taps:
+  # homebrew/bundle
+  - homebrew/core
+  - homebrew/cask
+  # homebrew/cask-fonts
+  # heroku/brew
+
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   ## backup & identity
@@ -100,8 +106,8 @@ homebrew_cask_apps:
   - visual-studio-code
   - wireshark
   ## browsers
-  - firefox
-  - google-chrome
+  # firefox
+  # google-chrome
   ## virtualization
   - docker
   - vagrant
@@ -117,7 +123,7 @@ homebrew_cask_apps:
   - libreoffice
   - openscad
   ## music
-  - blackhole
+  # blackhole
   - spotify
   - supercollider
   ## video
@@ -132,6 +138,7 @@ homebrew_cask_apps:
 # mas
 #
 
+# See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps:
   - { id: 443987910,  name: "1Password" }
   - { id: 1333542190, name: "1Password 7" }
@@ -146,6 +153,8 @@ mas_installed_apps:
   - { id: 411643860,  name: "DaisyDisk" }
   - { id: 638161122,  name: "YubiKey Personalization Tool" }
   - { id: 1116599239, name: "NordVPN IKE" }
+mas_email: ""
+mas_password: ""
 
 #
 # osx
@@ -157,7 +166,13 @@ osx_script: "~/.osx --no-restart"
 # extra packages
 #
 
+# Install packages from other package managers.
+# Note: You are responsible for making sure the required package managers are
+# installed, eg. through homebrew.
 composer_packages: []
+# - name: drush
+#   state: present # present/absent, default: present
+#   version: "^8.1" # default: N/A
 
 gem_user_install: yes
 
@@ -166,8 +181,14 @@ gem_packages:
     state: latest
 
 npm_packages: []
+# - name: webpack
+#   state: present # present/absent/latest, default: present
+#   version: "^2.6" # default: N/A
 
 pip_packages: []
+# - name: mkdocs
+#   state: present # present/absent/latest, default: present
+#   version: "0.16.3" # default: N/A
 
 #
 # extra tasks
